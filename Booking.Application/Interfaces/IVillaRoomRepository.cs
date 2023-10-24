@@ -7,8 +7,12 @@ using System.Threading.Tasks;
 
 namespace Booking.Application.Interfaces
 {
-    public interface IVillaNumberRepository : IRepository<VillaNumber>
+    public interface IVillaRoomRepository : IRepository<VillaRoom> 
     {
-        public void Update(VillaNumber entity);
+        
+        public void Update(VillaRoom entity);
+         
+
+
     }
 }

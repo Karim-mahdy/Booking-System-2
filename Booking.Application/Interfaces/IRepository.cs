@@ -15,5 +15,7 @@ namespace Booking.Application.Interfaces
         bool Any(Expression<Func<T, bool>>? filter);
         void Add(T entity);
         void Remove(T entity);
+        
+       
     }
 }

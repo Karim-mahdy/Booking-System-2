@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Booking.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231016234019_AddVillaNumberToDB")]
-    partial class AddVillaNumberToDB
+    [Migration("20231019021514_AddVillaRoomToDB")]
+    partial class AddVillaRoomToDB
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -90,9 +90,15 @@ namespace Booking.Infrastructure.Migrations
                     b.ToTable("Villas");
                 });
 
-            modelBuilder.Entity("Booking.Domain.Entities.VillaNumber", b =>
+            modelBuilder.Entity("Booking.Domain.Entities.VillaRoom", b =>
                 {
-                    b.Property<int>("Villa_Number")
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("RoomNumber")
                         .HasColumnType("int");
 
                     b.Property<string>("SpecialDetails")
@@ -102,11 +108,11 @@ namespace Booking.Infrastructure.Migrations
                     b.Property<int>("VillaId")
                         .HasColumnType("int");
 
-                    b.HasKey("Villa_Number");
+                    b.HasKey("Id");
 
                     b.HasIndex("VillaId");
 
-                    b.ToTable("VillaNumbers");
+                    b.ToTable("VillaRooms");
                 });
 
             modelBuilder.Entity("Booking.Domain.Entities.Amenity", b =>
@@ -120,7 +126,7 @@ namespace Booking.Infrastructure.Migrations
                     b.Navigation("Villa");
                 });
 
-            modelBuilder.Entity("Booking.Domain.Entities.VillaNumber", b =>
+            modelBuilder.Entity("Booking.Domain.Entities.VillaRoom", b =>
                 {
                     b.HasOne("Booking.Domain.Entities.Villa", "Villa")
                         .WithMany()
