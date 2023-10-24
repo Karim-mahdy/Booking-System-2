@@ -19,7 +19,8 @@ namespace Booking.Domain.Entities
 
 
         [Display(Name = "Room Number")]
-        [Range(1,100,ErrorMessage ="Room Number must be between 1 - 1000")]  
+        [Range(1,1000,ErrorMessage ="Room Number must be between 1 - 1000")]
+        
         public required int RoomNumber { get; set; }
 
         [StringLength(150, ErrorMessage = "Special Details must be within 100 characters.")]
