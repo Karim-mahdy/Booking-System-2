@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Booking.Infrastructure.Repository
 {
-    public class AmenityRepository : Repository<Amenity>, IAmentityRepository
+    public class AmenityRepository : Repository<Amenity>, IAmenityRepository
     {
         private readonly ApplicationDbContext context;
 
@@ -20,7 +20,7 @@ namespace Booking.Infrastructure.Repository
 
         public void Update(Amenity amenity)
         {
-            throw new NotImplementedException();
+            context.Update(amenity);
         }
     }
 }

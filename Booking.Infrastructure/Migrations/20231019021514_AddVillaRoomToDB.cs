@@ -5,7 +5,7 @@
 namespace Booking.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class AddVillaNumberToDB : Migration
+    public partial class AddVillaRoomToDB : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -21,18 +21,20 @@ namespace Booking.Infrastructure.Migrations
                 oldNullable: true);
 
             migrationBuilder.CreateTable(
-                name: "VillaNumbers",
+                name: "VillaRooms",
                 columns: table => new
                 {
-                    Villa_Number = table.Column<int>(type: "int", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    RoomNumber = table.Column<int>(type: "int", nullable: false),
                     SpecialDetails = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: true),
                     VillaId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_VillaNumbers", x => x.Villa_Number);
+                    table.PrimaryKey("PK_VillaRooms", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_VillaNumbers_Villas_VillaId",
+                        name: "FK_VillaRooms_Villas_VillaId",
                         column: x => x.VillaId,
                         principalTable: "Villas",
                         principalColumn: "Id",
@@ -40,8 +42,8 @@ namespace Booking.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_VillaNumbers_VillaId",
-                table: "VillaNumbers",
+                name: "IX_VillaRooms_VillaId",
+                table: "VillaRooms",
                 column: "VillaId");
         }
 
@@ -49,7 +51,7 @@ namespace Booking.Infrastructure.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "VillaNumbers");
+                name: "VillaRooms");
 
             migrationBuilder.AlterColumn<string>(
                 name: "Description",

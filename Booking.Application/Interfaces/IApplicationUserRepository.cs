@@ -7,8 +7,7 @@ using System.Threading.Tasks;
 
 namespace Booking.Application.Interfaces
 {
-    public interface IAmenityRepository : IRepository<Amenity>
+    public interface IApplicationUserRepository : IRepository<ApplicationUser>
     {
-        void Update(Amenity amenity);
     }
 }

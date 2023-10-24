@@ -78,7 +78,7 @@ namespace Booking.Infrastructure.Repository
             dbSet.Add(entity);
         }
 
-        public bool Any(System.Linq.Expressions.Expression<Func<T, bool>>? filter)
+        public bool Any(Expression<Func<T, bool>>? filter)
         {
             return dbSet.Any(filter);
         }
@@ -87,5 +87,7 @@ namespace Booking.Infrastructure.Repository
         {
            dbSet.Remove(entity);
         }
+
+       
     }
 }
