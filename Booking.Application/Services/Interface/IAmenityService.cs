@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Booking.Domain.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +9,11 @@ namespace Booking.Application.Services.Interface
 {
     public interface IAmenityService
     {
+        IEnumerable<Amenity> GetAllAmenities();
+        Amenity GetAmenityById(int id);
+        void CreateAmenity(Amenity amenity);
+        void UpdateAmenity(Amenity amenity);
+        bool DeleteAmenity(int Id);
+        bool CheckAmenityExistingperVilla(Amenity amenity);
     }
 }

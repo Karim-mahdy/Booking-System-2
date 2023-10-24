@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+﻿using Booking.Domain.Attributes;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -9,13 +11,19 @@ using System.Threading.Tasks;
 
 namespace Booking.Domain.Entities
 {
-    public class VillaNumber
+    public class VillaRoom
     {
-        [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
-        [Display(Name = "Villa Number")]
-        public int Villa_Number { get; set; }
+        
+        [Key]
+        public int Id { get; set; }
+
+
+        [Display(Name = "Room Number")]
+        [Range(1,100,ErrorMessage ="Room Number must be between 1 - 1000")]  
+        public required int RoomNumber { get; set; }
 
         [StringLength(150, ErrorMessage = "Special Details must be within 100 characters.")]
+
         public string? SpecialDetails { get; set; }
 
 

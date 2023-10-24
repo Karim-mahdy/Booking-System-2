@@ -1,9 +1,12 @@
 using Booking.Application.Interfaces;
 using Booking.Application.Services.Implementation;
 using Booking.Application.Services.Interface;
+using Booking.Domain.Entities;
 using Booking.Infrastructure.Data;
 using Booking.Infrastructure.Repository;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 
 namespace Booking.Web
 {
@@ -16,10 +19,16 @@ namespace Booking.Web
             // Add services to the container.
             builder.Services.AddControllersWithViews();
             builder.Services.AddDbContext<ApplicationDbContext>(option =>
-            option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+            
+            option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
+            );
+            builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
+             .AddEntityFrameworkStores<ApplicationDbContext>();
+
             builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
             builder.Services.AddScoped<IVillaService, VillaService>();
-            builder.Services.AddScoped<IVillaNumberService, VillaNumberService>();
+            builder.Services.AddScoped<IVillaRoomService, VillaRoomService>();
+            builder.Services.AddScoped<IAmenityService, AmenityService>();
             var app = builder.Build();
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
